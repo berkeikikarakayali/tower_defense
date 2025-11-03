@@ -47,6 +47,7 @@ public class Enemy : MonoBehaviour
         if (currentWaypointIndex >= Path.Waypoints.Length)
         {
             ReachedEndOfPath();
+            return;
         }
         else
         {
@@ -56,8 +57,8 @@ public class Enemy : MonoBehaviour
     
     void ReachedEndOfPath() // Later we will decrease health etc. here
     {
-        Debug.Log("Enemy reached the end.");
+        //Debug.Log("Enemy reached the end.");
+        BaseStats.Health -= damageToBase;  
         Destroy(gameObject);
     }
-    
 }

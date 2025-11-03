@@ -2,7 +2,7 @@ using UnityEngine;
 using System.Collections;
 using TMPro; // For the Text Mesh Pro UI element
 
-public class WaveSpawner : MonoBehaviour {
+public class Spawner : MonoBehaviour {
     
     [Header("References")]
     public Transform enemyPrefab; // The enemy I want to spawn
@@ -36,6 +36,12 @@ public class WaveSpawner : MonoBehaviour {
     }
     void Update ()
     {
+        if (BaseStats.Health <= 0)
+        {
+            BaseZeroHealth();
+            return;
+        }
+        
         if (timer <= 0f)
         {
             // Check if we've finished all waves
@@ -67,11 +73,16 @@ public class WaveSpawner : MonoBehaviour {
             yield return new WaitForSeconds(0.5f); //could be variable
         }
     }
-
+    
     void SpawnEnemy () //Creates a copy of the prefab
     {
         Instantiate(enemyPrefab, spawnPoint.position, spawnPoint.rotation);
         // Debug.Log("Spawned an enemy!");
     }
 
+    public void BaseZeroHealth()
+    {   
+        countdownText.text = "Level Failed!";
+        enabled = false;
+    }
 }
