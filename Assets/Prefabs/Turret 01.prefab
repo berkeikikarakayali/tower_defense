@@ -354,7 +354,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 2, y: 0.5, z: 12}
-  m_LocalScale: {x: 3, y: 3, z: 3}
+  m_LocalScale: {x: 2.46966, y: 2.46966, z: 2.46966}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5336149697779424650}
@@ -382,8 +382,7 @@ MonoBehaviour:
   fireRate: 1
   bulletPrefab: {fileID: 5361854200637495003, guid: 8035c1caf05f99a4098c16ca22d0d4b1, type: 3}
   firePoint: {fileID: 3110922306971548244}
-  TurretMiddlePart: {fileID: 5336149697779424650}
-  target: {fileID: 0}
+  turretMiddlePart: {fileID: 5336149697779424650}
   rangeSphere: {fileID: 2479072557079358362}
 --- !u!1 &6000684810056133908
 GameObject:

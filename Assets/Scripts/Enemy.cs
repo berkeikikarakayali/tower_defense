@@ -6,12 +6,21 @@ public class Enemy : MonoBehaviour
     public float moveSpeed = 5f; // How fast the enemy moves
     public int health = 100; // How much health the enemy starts
     public int damageToBase = 1; // Shows when the enemy reaches the base how much health it will decrease
-    
+
+    private float maxHealth;
     private Transform targetWaypoint;
     private int currentWaypointIndex = 0;
     
     void Start()
     {
+        // Capture max health at start
+        maxHealth = health;
+        // Initialize the bar
+        if ( GetComponent<EnemyHealthBar>() != null)
+        {
+            GetComponent<EnemyHealthBar>().UpdateHealth(health, maxHealth);
+        }
+        
         // When the enemy spawns needs to find the first waypoint
         // We need to make sure the Path script and its Waypoints array are working
         if (Path.Waypoints != null && Path.Waypoints.Length > 0)
@@ -27,10 +36,7 @@ public class Enemy : MonoBehaviour
     
     void Update()
     {
-        if (targetWaypoint == null)
-        {
-            return;
-        }
+        if (targetWaypoint == null) return;
         
         transform.position = Vector3.MoveTowards(transform.position, targetWaypoint.position, moveSpeed * Time.deltaTime);
         transform.LookAt(targetWaypoint); 
@@ -45,6 +51,12 @@ public class Enemy : MonoBehaviour
     {
         // Subtract the damage amount from current health
         health -= damage;
+        Debug.Log(health);
+        // Update UI
+        if (GetComponent<EnemyHealthBar>() != null)
+        {
+            GetComponent<EnemyHealthBar>().UpdateHealth(health, maxHealth);
+        }
         
         // If health drops to 0 or less, the enemy dies
         if (health <= 0)
