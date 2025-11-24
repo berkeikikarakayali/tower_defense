@@ -33,11 +33,29 @@ public class Enemy : MonoBehaviour
         }
         
         transform.position = Vector3.MoveTowards(transform.position, targetWaypoint.position, moveSpeed * Time.deltaTime);
-        
+        transform.LookAt(targetWaypoint); 
         if (Vector3.Distance(transform.position, targetWaypoint.position) < 0.1f)
         {
             GetNextWaypoint();
         }
+    }
+    
+    //Damage handling
+    public void TakeDamage(int damage)
+    {
+        // Subtract the damage amount from current health
+        health -= damage;
+        
+        // If health drops to 0 or less, the enemy dies
+        if (health <= 0)
+        {
+            Death();
+        }
+    }
+    
+    void Death()
+    {
+        Destroy(gameObject);
     }
     
     //To handle getting the next waypoint
