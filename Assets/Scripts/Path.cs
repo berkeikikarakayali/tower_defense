@@ -3,7 +3,7 @@ using UnityEngine;
 public class Path : MonoBehaviour
 {
     public static Transform[] Waypoints;
-    // Must attach this to an empty GameObject called Path which has children called Waypoints
+    // Must attach this to an empty GameObject called Path which has children that acts as Waypoints
     void Awake() // We used awake if we didn't use it when the enemy script called for the start function it would cause null reference
     {
         
