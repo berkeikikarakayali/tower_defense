@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 7661845513834956070}
   - component: {fileID: 2296018892214444732}
   - component: {fileID: 5522748762834613946}
+  - component: {fileID: 6741425233723490250}
   m_Layer: 0
   m_Name: Inferno Tower (laser)
   m_TagString: Untagged
@@ -108,3 +109,18 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &6741425233723490250
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1442292694884867174}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a52a2e3ea4ff8744ca73f643bfe629d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cost: 100
+  range: 25
+  rangeSphere: {fileID: 0}

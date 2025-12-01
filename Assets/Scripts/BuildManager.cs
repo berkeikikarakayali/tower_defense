@@ -42,7 +42,6 @@ public class BuildManager : MonoBehaviour
 
         // Get the tower from the array
         GameObject selectedTower = towerPrefabs[index];
-
         // Build the tower
         // We added an offset to create a tower object right at the center of the surface of the node
         GameObject t = Instantiate(selectedTower, node.transform.position + offset, Quaternion.identity);

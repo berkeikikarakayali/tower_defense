@@ -353,7 +353,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ce5b2899ecb1f341a05779272176266, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cost: 100
   range: 15
+  rangeSphere: {fileID: 2479072557079358362}
   turnSpeed: 5
   fireRate: 1
   enemyLayer:
@@ -362,7 +364,6 @@ MonoBehaviour:
   bulletPrefab: {fileID: 5361854200637495003, guid: 8035c1caf05f99a4098c16ca22d0d4b1, type: 3}
   firePoint: {fileID: 3110922306971548244}
   turretMiddlePart: {fileID: 5336149697779424650}
-  rangeSphere: {fileID: 2479072557079358362}
 --- !u!65 &1192601499235480728
 BoxCollider:
   m_ObjectHideFlags: 0

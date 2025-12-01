@@ -1,9 +1,8 @@
 using UnityEngine;
 
-public class Turret : MonoBehaviour
+public class Turret : Tower
 {
     [Header("Stats")]
-    public float range = 15f;
     public float turnSpeed = 5f;
     public float fireRate = 1f;
     
@@ -12,8 +11,6 @@ public class Turret : MonoBehaviour
     public GameObject bulletPrefab; // The bullet prefab to spawn
     public Transform firePoint; // The empty GameObject at the tip
     public Transform turretMiddlePart;
-    [Header("Visuals")]
-    public Transform rangeSphere;
     
     private float fireCountdown = 0f; 
     private Transform target;
@@ -23,24 +20,6 @@ public class Turret : MonoBehaviour
         InvokeRepeating("FindTarget", 0f, 0.4f);
         UpdateRangeSphere(); 
     }   
-    
-    void OnValidate()
-    {
-        // This function runs whenever a value changed in the Inspector(range)
-        UpdateRangeSphere();
-    }
-
-    void UpdateRangeSphere()
-    {
-        // Check if we've assigned the range sphere
-        if (rangeSphere != null)
-        {
-            // To make its radius equal to our 'range' multiply it with 2/3
-            float diameter = range*2/3;
-            
-            rangeSphere.localScale = new Vector3(diameter, diameter, diameter);
-        }
-    }
     
     void Update()
     {
@@ -121,21 +100,6 @@ public class Turret : MonoBehaviour
         Quaternion lookRotation = Quaternion.LookRotation(directionToLook);
         // rotate towards that rotation
         turretMiddlePart.rotation = Quaternion.Lerp(turretMiddlePart.rotation, lookRotation, Time.deltaTime * turnSpeed);
-    }
-    
-    void OnMouseEnter()
-    {
-        if (rangeSphere != null)
-        {
-            rangeSphere.gameObject.SetActive(true);
-        }
-    }
-    void OnMouseExit()
-    {
-        if (rangeSphere != null)
-        {
-            rangeSphere.gameObject.SetActive(false);
-        }
     }
 }
 
