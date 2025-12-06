@@ -296,6 +296,7 @@ MonoBehaviour:
   moveSpeed: 15
   health: 100
   damageToBase: 1
+  deathValue: 1
 --- !u!114 &3290991689299302281
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -353,7 +353,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ce5b2899ecb1f341a05779272176266, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cost: 100
+  cost: 15
   range: 15
   rangeSphere: {fileID: 2479072557079358362}
   turnSpeed: 5

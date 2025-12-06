@@ -64,7 +64,7 @@ public class Spawner : MonoBehaviour {
     IEnumerator SpawnWave ()
     {
         currentWaveIndex++;
-        Debug.Log("Spawning Wave " + currentWaveIndex);
+        //Debug.Log("Spawning Wave " + currentWaveIndex);
         
         // This loop spawns a number of enemies equal to the wave number
         for (int i = 0; i < currentWaveIndex; i++)

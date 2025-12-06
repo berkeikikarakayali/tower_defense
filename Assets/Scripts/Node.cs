@@ -8,7 +8,7 @@ public class Node : MonoBehaviour
     
     private Renderer rend;
 
-    public GameObject tower; // This variable will hold the tower on this node (if there is one)
+    public Tower tower; // This variable will hold the tower on this node (if there is one)
 
     void Start()
     {

@@ -9,14 +9,14 @@ public class HealthUI : MonoBehaviour
     void Start()
     {
         previousHealthValue = BaseStats.Health;
-        healthText.text = previousHealthValue.ToString() + " HEALTH";
+        healthText.text = previousHealthValue.ToString();
     }
     void Update()
     {
         if (BaseStats.Health != previousHealthValue)
         {   
             //Debug.Log(BaseStats.Health);
-            healthText.text = BaseStats.Health.ToString() + " HEALTH";
+            healthText.text = BaseStats.Health.ToString();
             previousHealthValue = BaseStats.Health;
         }
     }

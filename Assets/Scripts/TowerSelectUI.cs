@@ -9,7 +9,7 @@ public class TowerSelectUI : MonoBehaviour //attach it to panel that hold turret
     public float zOffset = -15f;
     
     public void SetTarget(Node newTarget)
-    {
+    {   
         targetNode = newTarget;
         
         // Move the menu to the correct position on screen

@@ -12,4 +12,31 @@ public class BaseStats : MonoBehaviour
         Health = startingHealth;
         Money = startingMoney;
     }
+    
+    public int getHealth()
+    {
+        return Health;
+    }
+    public static void decreaseHealth(int value)
+    {
+        Health -= value;
+    }
+
+    public static void increaseHealth(int value)
+    {
+        Health += value;
+    }
+
+    public static void addMoney(int value)
+    {
+        Money += value;
+        Debug.Log(Money);
+    }
+
+    public static void takeMoney(int value)
+    {
+        Money -= value;
+    }
+    
+    
 }

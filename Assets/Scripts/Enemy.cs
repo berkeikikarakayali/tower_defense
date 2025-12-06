@@ -6,6 +6,7 @@ public class Enemy : MonoBehaviour
     public float moveSpeed = 5f; // How fast the enemy moves
     public int health = 100; // How much health the enemy starts
     public int damageToBase = 1; // Shows when the enemy reaches the base how much health it will decrease
+	public int deathValue = 10; //the amount that we will gain when we kill an Enemy
 
     private float maxHealth;
     private Transform targetWaypoint;
@@ -67,6 +68,7 @@ public class Enemy : MonoBehaviour
     
     void Death()
     {
+      	BaseStats.addMoney(deathValue);
         Destroy(gameObject);
     }
     
@@ -88,7 +90,7 @@ public class Enemy : MonoBehaviour
     void ReachedEndOfPath() // Later we will decrease health etc. here
     {
         //Debug.Log("Enemy reached the end.");
-        BaseStats.Health -= damageToBase;  
+        BaseStats.decreaseHealth(damageToBase);
         Destroy(gameObject);
     }
 }

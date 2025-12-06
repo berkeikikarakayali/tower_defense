@@ -7,7 +7,7 @@ public class BuildManager : MonoBehaviour
     
     
     // An Array to hold Tower Prefabs
-    public GameObject[] towerPrefabs; 
+    public Tower[] towerPrefabs; 
     // Reference to tower selection UI
     public TowerSelectUI towerSelectUI;
 
@@ -39,12 +39,21 @@ public class BuildManager : MonoBehaviour
             Debug.LogError("Tower ID is invalid");
             return;
         }
+		// Get the tower from the array
+        Tower selectedTower = towerPrefabs[index];
+		if (selectedTower == null) {
+            Debug.LogError("Tower Prefab slot is empty! Fill in the Inspector menu.");
+		}		
 
-        // Get the tower from the array
-        GameObject selectedTower = towerPrefabs[index];
-        // Build the tower
-        // We added an offset to create a tower object right at the center of the surface of the node
-        GameObject t = Instantiate(selectedTower, node.transform.position + offset, Quaternion.identity);
-        node.tower = t;
+
+		if (BaseStats.Money >= selectedTower.cost) { //check if the player has enough money to construct the selected tower
+			BaseStats.takeMoney(selectedTower.cost);
+        	// Build the tower
+        	// We added an offset to create a tower object right at the center of the surface of the node
+        	Tower t = Instantiate(selectedTower, node.transform.position + offset, Quaternion.identity);
+        	node.tower = t;
+		} else {
+            Debug.Log("Not Enough money. You have " + BaseStats.Money);
+        }
     }
 }
