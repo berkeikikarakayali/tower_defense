@@ -4,17 +4,20 @@ using TMPro; // For the Text Mesh Pro UI element
 
 public class Spawner : MonoBehaviour {
     
+    public enum SpawnState { SPAWNING, WAITING, COMPLETE }; // game flow
+
+    [Header("Wave Setup")]
+    public WaveSetup waveSetup; //the wavesetup object reference that we created
+    public float waveWaitTime = 3f; // How long to wait between waves
+
     [Header("References")]
-    public Transform enemyPrefab; // The enemy I want to spawn
-    public Transform spawnPoint; // Where the enemy should spawn from
-    public TextMeshProUGUI  countdownText; // The text on the screen for the timer
+    public Transform spawnPoint; // Where the enemy should spawn
+    public TextMeshProUGUI  statusText; // The text on the screen for the countdown and messages
     
-    [Header("Wave Timings")]
-    public float waveWaitTime = 5f; // How long to wait between waves
-    public int maxWaves = 10; // The total number of waves for this level
-    
-    private float timer = 2f; // Timer for the next wave
-    private int currentWaveIndex = 0;
+
+    private int nextWaveIndex = 0;
+    private float searchCountDown = 1f; // How often to check for enemies, to optimize the game higher
+    private SpawnState state = SpawnState.WAITING;
 
     void Start()
     {
@@ -23,66 +26,108 @@ public class Spawner : MonoBehaviour {
         {
             Debug.LogError("No spawn point referenced!");
             enabled = false;
+            return;
         }
-        if (enemyPrefab == null)
+        if (waveSetup == null)
         {
-            Debug.LogError("No enemy prefab referenced!");
+            Debug.LogError("No wave setup referenced!");
             enabled = false;
+            return;
         }
-        if (countdownText == null)
+        if (statusText == null)
         {
-            Debug.LogError("No countdown text referenced!");
+            Debug.LogError("No status text referenced!");
+            return;
         }
     }
     void Update ()
-    {
-        if (BaseStats.Health <= 0)
+    {   
+        //if the spawning process is running, or the level is completed, do nothing
+        if (state == SpawnState.SPAWNING || state == SpawnState.COMPLETE)
         {
-            BaseZeroHealth();
-            return;
-        }
-        
-        if (timer <= 0f)
-        {
-            // Check if we've finished all waves
-            if (currentWaveIndex >= maxWaves)
-            {
-                countdownText.text = "Level Completed!";
-                enabled = false; // Stop the spawner
-                return;
-            }
-            
-            StartCoroutine(SpawnWave());
-            timer = waveWaitTime;
             return;
         }
 
-        timer -= Time.deltaTime;
-        countdownText.text = Mathf.Round(timer).ToString();
+        if (state == SpawnState.WAITING) //if we are waiting, check if the enemies are dead?
+        {
+            if (EnemiesCleared())
+            {
+                WaveFinished(); //no enemies left, the wave is finished
+            } else
+            {
+                return; 
+            }
+        }
+    }
+    bool EnemiesCleared()
+    {
+        //Instead of checking 60 times a second, check once per second
+        searchCountDown -= Time.deltaTime;
+        if (searchCountDown <= 0f)
+        {
+            searchCountDown = 1f; //timer
+            if (GameObject.FindGameObjectWithTag("Enemy") == null)
+            {
+                return true; // No enemies found
+            }
+        }
+        return false; // Enemies found (or wait for the next check)
+    }
+    void WaveFinished() //called when all the enemies are dead
+    {
+        if (nextWaveIndex < waveSetup.waves.Length) //check if there are more wave left
+        {
+            StartCoroutine(CountdownForNextWave()); // yes, start the countdown for the next wave
+         } else
+        {
+            LevelCompleted(); // no, all waves are finished
+        }
     }
 
-    IEnumerator SpawnWave ()
+    IEnumerator CountdownForNextWave() // to handle countdown between waves
     {
-        currentWaveIndex++;
-        //Debug.Log("Spawning Wave " + currentWaveIndex);
-        
-        // This loop spawns a number of enemies equal to the wave number
-        for (int i = 0; i < currentWaveIndex; i++)
+        state = SpawnState.SPAWNING; // change the state to spawning, so update doesn't trigger this function again
+
+        float countdown = waveWaitTime;
+        while (countdown > 0)
         {
-            SpawnEnemy(); //To create an enemy
-            yield return new WaitForSeconds(0.5f); //could be variable
+            countdown -= Time.deltaTime;
+            //clamp to not show negative number, F2 to show like 2.XX
+            statusText.text = "Next Wave: " + Mathf.Clamp(countdown, 0f, Mathf.Infinity).ToString("F2");
+
+            yield return null; //wait for the next frame
         }
+
+        StartCoroutine(SpawnWave(waveSetup.waves[nextWaveIndex]));
+        nextWaveIndex++;
+    }
+    IEnumerator SpawnWave (Wave currentWave)
+    {
+        Debug.Log("Spawning Wave:" + currentWave.name);
+        state = SpawnState.SPAWNING;
+
+        statusText.text = currentWave.name; //show wave name on screen
+        
+        foreach (WaveGroup group in currentWave.groups)
+        {
+            for (int i = 0; i < group.count; i++)
+            {
+                SpawnEnemy(group.enemyPrefab); //To create an enemy
+                yield return new WaitForSeconds(1f / group.spawnRate);
+            }
+        }
+        state = SpawnState.WAITING; // spawning process is finished, wait for player to kill the enemies
     }
     
-    void SpawnEnemy () //Creates a copy of the prefab
+    void SpawnEnemy (GameObject _enemy) //Creates a copy of the prefab
     {
-        Instantiate(enemyPrefab, spawnPoint.position, spawnPoint.rotation);
-        // Debug.Log("Spawned an enemy!");
+        Instantiate(_enemy, spawnPoint.position, spawnPoint.rotation);
     }
 
-    public void BaseZeroHealth()
-    {   
-        countdownText.text = "Level Failed!";
-        enabled = false;
+    void LevelCompleted()
+    {
+        Debug.Log("All waves are finished! Good job!");
+        state = SpawnState.COMPLETE;
+        statusText.text = "YOU WIN!";
     }
 }
