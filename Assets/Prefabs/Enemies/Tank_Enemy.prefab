@@ -175,7 +175,7 @@ MonoBehaviour:
   moveSpeed: 10
   health: 300
   damageToBase: 3
-  deathValue: 15
+  deathValue: 5
 --- !u!114 &6360392395454366722
 MonoBehaviour:
   m_ObjectHideFlags: 0

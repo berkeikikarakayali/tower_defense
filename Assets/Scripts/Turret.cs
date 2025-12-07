@@ -95,7 +95,7 @@ public class Turret : Tower
         //Get the direction to the target
         Vector3 directionToLook = target.position - turretMiddlePart.position;
         //Ignore height differences 
-        //directionToLook.y = 0;
+        directionToLook.y = 0;
         // Create the target rotation
         Quaternion lookRotation = Quaternion.LookRotation(directionToLook);
         // rotate towards that rotation

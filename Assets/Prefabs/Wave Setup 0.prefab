@@ -63,3 +63,28 @@ MonoBehaviour:
     - enemyPrefab: {fileID: 1287359168785105097, guid: 06e7f3c2fff48eb4584595afc74cfe8d, type: 3}
       count: 3
       spawnRate: 2
+    - enemyPrefab: {fileID: 6047493727995533255, guid: 5971daa8faa59934f83ef7883db8c345, type: 3}
+      count: 1
+      spawnRate: 0.5
+  - name: WAVE 4
+    groups:
+    - enemyPrefab: {fileID: 725803256125395092, guid: 1f3cbe03064f0484691abcbd5be9a9dd, type: 3}
+      count: 5
+      spawnRate: 2
+    - enemyPrefab: {fileID: 1287359168785105097, guid: 06e7f3c2fff48eb4584595afc74cfe8d, type: 3}
+      count: 3
+      spawnRate: 2
+    - enemyPrefab: {fileID: 6047493727995533255, guid: 5971daa8faa59934f83ef7883db8c345, type: 3}
+      count: 3
+      spawnRate: 2
+  - name: WAVE 4
+    groups:
+    - enemyPrefab: {fileID: 725803256125395092, guid: 1f3cbe03064f0484691abcbd5be9a9dd, type: 3}
+      count: 5
+      spawnRate: 2
+    - enemyPrefab: {fileID: 1287359168785105097, guid: 06e7f3c2fff48eb4584595afc74cfe8d, type: 3}
+      count: 3
+      spawnRate: 2
+    - enemyPrefab: {fileID: 6047493727995533255, guid: 5971daa8faa59934f83ef7883db8c345, type: 3}
+      count: 3
+      spawnRate: 2

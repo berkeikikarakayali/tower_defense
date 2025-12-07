@@ -11,6 +11,9 @@ public class BuildManager : MonoBehaviour
     // Reference to tower selection UI
     public TowerSelectUI towerSelectUI;
 
+    //public TowerModifyUI modifyUI; //upgrade and sell menu
+    public Node selectedNode;
+
 	void Awake()
     {
         if (buildManager != null)
@@ -25,12 +28,28 @@ public class BuildManager : MonoBehaviour
     {
         if (towerSelectUI == null)
         {
-            Debug.LogError("UI reference is missing");
+            Debug.LogError("UI reference is missing in BuildManager");
             return;
         }
+
+        //if we clicked the same node, deselect it
+        if (selectedNode == node)
+        {
+            DeselectNode();
+            return;
+        }
+        
+        selectedNode = node; //to remember which node we clicked
+
         towerSelectUI.SetTarget(node);
     }
     
+    void DeselectNode()
+    {
+        selectedNode = null;
+        towerSelectUI.Hide();
+        //modifyUI.Hide();
+    }
     public void BuildTowerOn(Node node, int towerID)
     {
         int index = towerID;
@@ -41,6 +60,7 @@ public class BuildManager : MonoBehaviour
         }
 		// Get the tower from the array
         Tower selectedTower = towerPrefabs[index];
+        
 		if (selectedTower == null) {
             Debug.LogError("Tower Prefab slot is empty! Fill in the Inspector menu.");
 		}		
