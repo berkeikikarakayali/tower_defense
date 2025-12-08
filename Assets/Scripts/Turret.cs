@@ -7,13 +7,12 @@ public class Turret : Tower
     public float fireRate = 1f;
     
     [Header("Setup")]
-    public LayerMask enemyLayer;
     public GameObject bulletPrefab; // The bullet prefab to spawn
     public Transform firePoint; // The empty GameObject at the tip
     public Transform turretMiddlePart;
     
     private float fireCountdown = 0f; 
-    private Transform target;
+
     
     void Start()
     {
@@ -37,42 +36,6 @@ public class Turret : Tower
         {
             Shoot();
             fireCountdown = 1f / fireRate; // Reset timer based on fire rate
-        }
-    }
-    
-    void FindTarget()
-    {
-        //Invisible sphere at our position with our range
-        //Get an array of all colliders on the enemyLayer inside it.
-        Collider[] enemies = Physics.OverlapSphere(transform.position, range, enemyLayer);
-        
-        float shortestDistance = Mathf.Infinity;
-        Transform nearestEnemy = null;
-
-        //Loop through every enemy collider we found.
-        //We should find the closest one in the array.
-        foreach (Collider enemy in enemies)
-        {
-            //Calculate the distance to this enemy.
-            float distanceToEnemy = Vector3.Distance(transform.position, enemy.transform.position);
-
-            //Check if this enemy is closer than the last one.
-            if (distanceToEnemy < shortestDistance)
-            {
-                shortestDistance = distanceToEnemy;
-                nearestEnemy = enemy.transform; // We target the collider's transform
-            }
-        }
-
-        //We set our target
-        //because OverlapSphere already guaranteed they are in range.
-        if (nearestEnemy != null)
-        {
-            target = nearestEnemy;
-        }
-        else
-        {
-            target = null;
         }
     }
     

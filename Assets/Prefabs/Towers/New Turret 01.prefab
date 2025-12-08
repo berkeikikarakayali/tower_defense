@@ -78,14 +78,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9ce5b2899ecb1f341a05779272176266, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cost: 15
+  cost: 20
   range: 15
-  rangeSphere: {fileID: 558452972459606489}
-  turnSpeed: 5
-  fireRate: 7.5
   enemyLayer:
     serializedVersion: 2
     m_Bits: 64
+  rangeSphere: {fileID: 558452972459606489}
+  turnSpeed: 5
+  fireRate: 7.5
   bulletPrefab: {fileID: 5361854200637495003, guid: 8035c1caf05f99a4098c16ca22d0d4b1, type: 3}
   firePoint: {fileID: 2523495609530926883}
   turretMiddlePart: {fileID: 8204300262389181040}

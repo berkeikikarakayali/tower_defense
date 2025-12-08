@@ -4,7 +4,7 @@ public class Enemy : MonoBehaviour
 {
     [Header("Enemy Stats")]
     public float moveSpeed = 5f; // How fast the enemy moves
-    public int health = 100; // How much health the enemy starts
+    public float health = 100; // How much health the enemy starts
     public int damageToBase = 1; // Shows when the enemy reaches the base how much health it will decrease
 	public int deathValue = 10; //the amount that we will gain when we kill an Enemy
 
@@ -48,7 +48,7 @@ public class Enemy : MonoBehaviour
     }
     
     //Damage handling
-    public void TakeDamage(int damage)
+    public void TakeDamage(float damage)
     {
         // Subtract the damage amount from current health
         health -= damage;

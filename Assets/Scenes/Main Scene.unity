@@ -3642,7 +3642,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   offset: {x: -3, y: 0.876517, z: -3}
   towerPrefabs:
-  - {fileID: 855405232177502331, guid: c5a0e02e8c2cc424ab845e35793b45ec, type: 3}
+  - {fileID: 3811478315461122436, guid: 6c494669c6973614d8c97dac3e152860, type: 3}
   - {fileID: 1534232295267376101, guid: 4d98da64a0e25de4a82f3ccef12c56f8, type: 3}
   - {fileID: 5671669053756986575, guid: 37a83d561cdc2554f8122f5a86d8bcfe, type: 3}
   towerSelectUI: {fileID: 2046007244}
@@ -12501,9 +12501,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '20
-
-'
+  m_text: WAVE X
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -15653,7 +15651,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 12c9409e155c57c42a5da3fbc224f5fe, type: 2}
+  - {fileID: 2100000, guid: 8bed7f2bcfd3acc49a15bf5427c2e162, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
