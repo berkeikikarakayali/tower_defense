@@ -20,6 +20,7 @@ public class InfernoTower : Tower
     void Start()
     {
         InvokeRepeating("FindTarget", 0f, 0.4f);
+        UpdateRangeSphere();
     }
 
     void Update()

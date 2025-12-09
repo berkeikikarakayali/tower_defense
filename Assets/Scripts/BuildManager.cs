@@ -10,9 +10,9 @@ public class BuildManager : MonoBehaviour
     public Tower[] towerPrefabs; 
     // Reference to tower selection UI
     public TowerSelectUI towerSelectUI;
-
-    //public TowerModifyUI modifyUI; //upgrade and sell menu
+    public TowerModifyUI towerModifyUI;
     public Node selectedNode;
+    public Tower selectedTower;
 
 	void Awake()
     {
@@ -48,7 +48,6 @@ public class BuildManager : MonoBehaviour
     {
         selectedNode = null;
         towerSelectUI.Hide();
-        //modifyUI.Hide();
     }
     public void BuildTowerOn(Node node, int towerID)
     {
@@ -75,5 +74,10 @@ public class BuildManager : MonoBehaviour
 		} else {
             Debug.Log("Not Enough money. You have " + BaseStats.Money);
         }
+    }
+
+    public void SelectTower(Tower tower)
+    {
+        
     }
 }

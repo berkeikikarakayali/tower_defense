@@ -36,7 +36,6 @@ public class Node : MonoBehaviour
         if (EventSystem.current.IsPointerOverGameObject()) return;
 
         // If a tower is already placed here prevent building a new one
-        // to do : upgrading or selling the tower
         if (tower != null) 
         {
             Debug.Log("Tower already placed on this node.");

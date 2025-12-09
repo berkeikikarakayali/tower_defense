@@ -65,4 +65,3 @@ public class Turret : Tower
         turretMiddlePart.rotation = Quaternion.Lerp(turretMiddlePart.rotation, lookRotation, Time.deltaTime * turnSpeed);
     }
 }
-
