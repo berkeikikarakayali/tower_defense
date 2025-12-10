@@ -7,7 +7,8 @@ public class Enemy : MonoBehaviour
     public float health = 100; // How much health the enemy starts
     public int damageToBase = 1; // Shows when the enemy reaches the base how much health it will decrease
 	public int deathValue = 10; //the amount that we will gain when we kill an Enemy
-
+    [Header("Effects")]
+    public GameObject deathEffect; //reference to particle system prefab
     private float maxHealth;
     private Transform targetWaypoint;
     private int currentWaypointIndex = 0;
@@ -68,6 +69,14 @@ public class Enemy : MonoBehaviour
     
     void Death()
     {
+        if (deathEffect != null)
+        {
+            GameObject effectIns = Instantiate(deathEffect, transform.position, Quaternion.identity);
+
+            //Destroy the particle object after 2 seconds
+            Destroy(effectIns, 2f);
+        }
+
       	BaseStats.addMoney(deathValue);
         Destroy(gameObject);
     }
