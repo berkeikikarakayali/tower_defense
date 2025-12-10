@@ -9,6 +9,7 @@ public class Enemy : MonoBehaviour
 	public int deathValue = 10; //the amount that we will gain when we kill an Enemy
     [Header("Effects")]
     public GameObject deathEffect; //reference to particle system prefab
+    public GameObject deathText; //reference to EnemyDeathText prefab /TextMeshPro
     private float maxHealth;
     private Transform targetWaypoint;
     private int currentWaypointIndex = 0;
@@ -75,6 +76,16 @@ public class Enemy : MonoBehaviour
 
             //Destroy the particle object after 2 seconds
             Destroy(effectIns, 2f);
+        }
+        
+        if (deathText != null)
+        {
+            GameObject text_ins = Instantiate(deathText, transform.position, Quaternion.identity);
+            EnemyDeathText text_script = text_ins.GetComponent<EnemyDeathText>();
+            if(text_script != null)
+            {
+                text_script.SetText("+$"+ deathValue);
+            }
         }
 
       	BaseStats.addMoney(deathValue);

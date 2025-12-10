@@ -148,7 +148,7 @@ MonoBehaviour:
   damageToBase: 1
   deathValue: 1
   deathEffect: {fileID: 8782178434452600074, guid: 29f6f137a6e7f944888f5daa0dcfa26d, type: 3}
-  deathText: {fileID: 2130878647116658163, guid: 7c50db4af5a917b41952f8889397337e, type: 3}
+  deathText: {fileID: 825682705319743727, guid: 7c50db4af5a917b41952f8889397337e, type: 3}
 --- !u!114 &9104926364469274942
 MonoBehaviour:
   m_ObjectHideFlags: 0
