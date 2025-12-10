@@ -3,6 +3,11 @@ using UnityEngine.EventSystems;
 public class Tower : MonoBehaviour
 {
 	//Features that most of the towers have, to improve 
+    [Header("Upgrade Section")]
+    public Tower nextUpgradePrefab; //prefab of the ugpraded version tower
+    public int upgradeCost = 150;
+    public int sellValue = 50;
+
     [Header("Basic Tower Stats")] 
     public int cost = 15; //cost of the tower, can be updated individually later.
     public float range = 15f; //range of the tower, can be updated individually later.
@@ -11,6 +16,9 @@ public class Tower : MonoBehaviour
 
     [Header("Basic Tower Visuals")]
     public Transform rangeSphere; //sphere object that act like a range of the tower
+
+    [HideInInspector]
+    public Node currentNode; //To remember which node the tower is standing on
 
     protected void FindTarget()
     {
@@ -71,5 +79,20 @@ public class Tower : MonoBehaviour
     public virtual void OnValidate()
     {
         UpdateRangeSphere();
+    }
+
+    public virtual void OnMouseDown() //Clicking on tower Selects the node underneath(upgrade sell section)
+    {
+        if (EventSystem.current.IsPointerOverGameObject()) return;
+
+        if (currentNode != null)
+        {
+            BuildManager.buildManager.SelectNode(currentNode);
+        }
+    }
+    public bool IsMaxLevel() //Boolean is there any upgraded version of this turret?
+    {
+        if(nextUpgradePrefab == null) return true;
+        return false;
     }
 }

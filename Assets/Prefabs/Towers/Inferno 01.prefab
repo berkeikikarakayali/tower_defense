@@ -69,12 +69,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a52a2e3ea4ff8744ca73f643bfe629d6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nextUpgradePrefab: {fileID: 3811478315461122436, guid: d844a0c3cef97d648b7774661dd22d3b, type: 3}
+  upgradeCost: 150
+  sellValue: 50
   cost: 25
   range: 15
   enemyLayer:
     serializedVersion: 2
     m_Bits: 64
   rangeSphere: {fileID: 1082414738719805451}
+  currentNode: {fileID: 0}
   damage: 15
   turnSpeed: 10
   dmgIncRate: 1.05
@@ -325,7 +329,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1082414738719805451
 Transform:
   m_ObjectHideFlags: 0

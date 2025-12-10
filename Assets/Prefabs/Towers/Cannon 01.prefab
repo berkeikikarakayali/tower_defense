@@ -113,8 +113,8 @@ Transform:
   m_GameObject: {fileID: 2605677450898717085}
   serializedVersion: 2
   m_LocalRotation: {x: -0.49999994, y: -0.50000006, z: -0.50000006, w: 0.49999994}
-  m_LocalPosition: {x: 0.3, y: -0.053, z: 0}
-  m_LocalScale: {x: 100, y: 74.881, z: 100}
+  m_LocalPosition: {x: 0.3, y: -0.003000002, z: 0}
+  m_LocalScale: {x: 100, y: 74.88098, z: 100}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4466848582774382715}
@@ -219,17 +219,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46e129f5011c0c94a84390abf7d8db36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  nextUpgradePrefab: {fileID: 0}
+  upgradeCost: 150
+  sellValue: 50
   cost: 15
   range: 15
   enemyLayer:
     serializedVersion: 2
     m_Bits: 64
   rangeSphere: {fileID: 371102142096031543}
+  currentNode: {fileID: 0}
   cannonBallPrefab: {fileID: 6591406855218892750, guid: d68f5e214171bf24c963c91ffe3ce05c, type: 3}
   middlePart: {fileID: 4466848582774382715}
   firePoint: {fileID: 2624656875021490564}
   turnSpeed: 5
-  fireRate: 0.5
+  fireRate: 1
 --- !u!65 &6955020131917652440
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -393,8 +397,8 @@ Transform:
   m_GameObject: {fileID: 8751451275078367239}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.25, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: 0, y: 0.359, z: 0}
+  m_LocalScale: {x: 1.3801, y: 1.3801, z: 1.3801}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 8489724840680393131}

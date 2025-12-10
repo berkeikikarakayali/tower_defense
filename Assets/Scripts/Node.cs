@@ -5,7 +5,6 @@ public class Node : MonoBehaviour
 {
     public Color hoverColor = Color.green; // The color of the node when we hover over it/also can be changed from inspector window
     private Color startColor;  // To remember the original color of the node
-    
     private Renderer rend;
 
     public Tower tower; // This variable will hold the tower on this node (if there is one)
@@ -34,15 +33,7 @@ public class Node : MonoBehaviour
     {
         // Prevent interaction with the node if the mouse is interacting with UI
         if (EventSystem.current.IsPointerOverGameObject()) return;
-
-        // If a tower is already placed here prevent building a new one
-        if (tower != null) 
-        {
-            Debug.Log("Tower already placed on this node.");
-            return;
-        }
-
-        // Tell BuildManager to select this node for construction.
+        // Tell BuildManager to select this node for construction/modify.
         BuildManager.buildManager.SelectNode(this);
     }
 }
