@@ -13,7 +13,7 @@ public class Spawner : MonoBehaviour {
     [Header("References")]
     public Transform spawnPoint; // Where the enemy should spawn
     public TextMeshProUGUI  statusText; // The text on the screen for the countdown and messages
-    
+    public bool isWaveActive = false; //to check for the wave is active
 
     private int nextWaveIndex = 0;
     private float searchCountDown = 1f; // How often to check for enemies, to optimize the game higher
@@ -37,6 +37,7 @@ public class Spawner : MonoBehaviour {
         if (statusText == null)
         {
             Debug.LogError("No status text referenced!");
+            enabled = false;
             return;
         }
     }
@@ -75,6 +76,7 @@ public class Spawner : MonoBehaviour {
     }
     void WaveFinished() //called when all the enemies are dead
     {
+        isWaveActive = false; //wave is over
         if (nextWaveIndex < waveSetup.waves.Length) //check if there are more wave left
         {
             StartCoroutine(CountdownForNextWave()); // yes, start the countdown for the next wave
@@ -87,6 +89,7 @@ public class Spawner : MonoBehaviour {
     IEnumerator CountdownForNextWave() // to handle countdown between waves
     {
         state = SpawnState.SPAWNING; // change the state to spawning, so update doesn't trigger this function again
+        isWaveActive = false; //not active countdown
 
         float countdown = waveWaitTime;
         while (countdown > 0)
@@ -105,7 +108,7 @@ public class Spawner : MonoBehaviour {
     {
         Debug.Log("Spawning Wave:" + currentWave.name);
         state = SpawnState.SPAWNING;
-
+        isWaveActive = true; //wave is active
         statusText.text = currentWave.name; //show wave name on screen
         
         foreach (WaveGroup group in currentWave.groups)
@@ -126,6 +129,7 @@ public class Spawner : MonoBehaviour {
 
     void LevelCompleted()
     {
+        isWaveActive = false; //level completed
         Debug.Log("All waves are finished! Good job!");
         state = SpawnState.COMPLETE;
         statusText.text = "YOU WIN!";

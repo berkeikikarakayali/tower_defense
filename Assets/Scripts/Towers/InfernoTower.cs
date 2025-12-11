@@ -87,7 +87,6 @@ public class InfernoTower : Tower
         Enemy e = target.GetComponent<Enemy>();
             if (e != null)
             {   
-                Debug.Log(tickDamage + " damage");
                 e.TakeDamage(tickDamage);
             }
             yield return new WaitForSeconds(tickRate);
