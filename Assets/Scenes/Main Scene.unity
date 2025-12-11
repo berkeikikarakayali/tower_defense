@@ -9643,7 +9643,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startingHealth: 20
-  startingMoney: 500
+  startingMoney: 50
 --- !u!1 &936904754
 GameObject:
   m_ObjectHideFlags: 0
@@ -9998,8 +9998,7 @@ Transform:
   m_LocalPosition: {x: 40, y: 56.551613, z: -25.850023}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 1405132405}
+  m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
 --- !u!1001 &981148518
@@ -14535,6 +14534,7 @@ GameObject:
   - component: {fileID: 1405132405}
   - component: {fileID: 1405132404}
   - component: {fileID: 1405132403}
+  - component: {fileID: 1405132406}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -14609,13 +14609,34 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1405132402}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.10041363, y: 0.14485331, z: -0.21448733, w: 0.9606924}
-  m_LocalPosition: {x: -23.685389, y: -29.333092, z: -44.421906}
+  m_LocalRotation: {x: 0.60876095, y: 0.000000014901161, z: 0.000000007450581, w: 0.79335374}
+  m_LocalPosition: {x: 45, y: 85.6, z: -77.1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 973739215}
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 75, y: 0, z: 0}
+--- !u!114 &1405132406
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1405132402}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 255f3ddaea76d444c8434443f7143cac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveSpeed: 30
+  zoomSpeed: 5
+  minY: 10
+  maxY: 100
+  minX: 0
+  maxX: 100
+  minZ: -100
+  maxZ: 0
+  canMove: 1
 --- !u!4 &1409450166 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 8293977126012523240, guid: 41f9074d5c96a10419602a3f077ff1d4, type: 3}
@@ -23810,6 +23831,7 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 936904757}
+  - {fileID: 1405132405}
   - {fileID: 973739215}
   - {fileID: 1736988068}
   - {fileID: 1307839979}

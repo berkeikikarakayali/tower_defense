@@ -54,7 +54,6 @@ public class Enemy : MonoBehaviour
     {
         // Subtract the damage amount from current health
         health -= damage;
-        Debug.Log(health);
         // Update UI
         if (GetComponent<EnemyHealthBar>() != null)
         {

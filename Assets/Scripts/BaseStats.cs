@@ -30,7 +30,6 @@ public class BaseStats : MonoBehaviour
     public static void addMoney(int value)
     {
         Money += value;
-        Debug.Log(Money);
     }
 
     public static void takeMoney(int value)
