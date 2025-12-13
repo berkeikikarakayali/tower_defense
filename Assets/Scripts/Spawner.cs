@@ -124,7 +124,12 @@ public class Spawner : MonoBehaviour {
     
     void SpawnEnemy (GameObject _enemy) //Creates a copy of the prefab
     {
-        Instantiate(_enemy, spawnPoint.position, spawnPoint.rotation);
+        GameObject newEnemy = Instantiate(_enemy, spawnPoint.position, spawnPoint.rotation);
+        Enemy enemyScript = newEnemy.GetComponent<Enemy>();
+        if(enemyScript != null && nextWaveIndex > 0)
+        {
+            enemyScript.ChangeDifficulty(nextWaveIndex);
+        }
     }
 
     void LevelCompleted()

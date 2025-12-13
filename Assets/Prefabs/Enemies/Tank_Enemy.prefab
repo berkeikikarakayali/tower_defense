@@ -174,8 +174,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 10
   health: 300
-  damageToBase: 3
-  deathValue: 5
+  damageToBase: 5
+  deathValue: 3
   deathEffect: {fileID: 8782178434452600074, guid: 29f6f137a6e7f944888f5daa0dcfa26d, type: 3}
   deathText: {fileID: 825682705319743727, guid: 7c50db4af5a917b41952f8889397337e, type: 3}
 --- !u!114 &6360392395454366722

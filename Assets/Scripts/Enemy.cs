@@ -10,18 +10,18 @@ public class Enemy : MonoBehaviour
     [Header("Effects")]
     public GameObject deathEffect; //reference to particle system prefab
     public GameObject deathText; //reference to EnemyDeathText prefab /TextMeshPro
-    private float maxHealth;
+    private float startHealth;
     private Transform targetWaypoint;
     private int currentWaypointIndex = 0;
     
-    void Start()
+    void Awake()
     {
         // Capture max health at start
-        maxHealth = health;
+        startHealth = health;
         // Initialize the bar
         if ( GetComponent<EnemyHealthBar>() != null)
         {
-            GetComponent<EnemyHealthBar>().UpdateHealth(health, maxHealth);
+            GetComponent<EnemyHealthBar>().UpdateHealth(health, startHealth);
         }
         
         // When the enemy spawns needs to find the first waypoint
@@ -57,7 +57,7 @@ public class Enemy : MonoBehaviour
         // Update UI
         if (GetComponent<EnemyHealthBar>() != null)
         {
-            GetComponent<EnemyHealthBar>().UpdateHealth(health, maxHealth);
+            GetComponent<EnemyHealthBar>().UpdateHealth(health, startHealth);
         }
         
         // If health drops to 0 or less, the enemy dies
@@ -111,5 +111,12 @@ public class Enemy : MonoBehaviour
         //Debug.Log("Enemy reached the end.");
         BaseStats.decreaseHealth(damageToBase);
         Destroy(gameObject);
+    }
+
+    public void ChangeDifficulty(int waveNumber)
+    {
+        // Calculate the multiplier 
+        float multiplier = Mathf.Pow(1.1f, waveNumber);
+        health = startHealth * multiplier; //set the values;
     }
 }
