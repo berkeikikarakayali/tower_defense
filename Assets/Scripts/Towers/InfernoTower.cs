@@ -17,12 +17,6 @@ public class InfernoTower : Tower
     public float currentRate = 1f;
     private Coroutine laserCoroutine; //To start and stop Coroutine
 
-    void Start()
-    {
-        InvokeRepeating("FindTarget", 0f, 0.4f);
-        UpdateRangeSphere();
-    }
-
     void Update()
     {
         if (target == null)

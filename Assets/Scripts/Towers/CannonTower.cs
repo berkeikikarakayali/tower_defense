@@ -10,13 +10,6 @@ public class CannonTower : Tower
     public float fireRate = 0.5f; // Seconds between shots
 
     private float fireCountdown = 0f;
-
-    void Start()
-    {
-        InvokeRepeating("FindTarget", 0f, 0.5f);
-        UpdateRangeSphere();
-    }
-
     void Update()
     {
         if (target == null) return;

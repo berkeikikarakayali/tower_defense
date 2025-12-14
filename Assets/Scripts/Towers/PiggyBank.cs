@@ -10,8 +10,9 @@ public class PiggyBank : Tower
 
 
     private Spawner spawnerScript; //spawne script reference to track is the wave active
-    void Start()
+    public override void Start()
     {
+        base.Start();
         spawnerScript = FindFirstObjectByType<Spawner>();
 
         if (spawnerScript == null)

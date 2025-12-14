@@ -72,6 +72,7 @@ MonoBehaviour:
   nextUpgradePrefab: {fileID: 3811478315461122436, guid: d844a0c3cef97d648b7774661dd22d3b, type: 3}
   upgradeCost: 30
   sellValue: 10
+  type: 1
   cost: 25
   range: 15
   enemyLayer:

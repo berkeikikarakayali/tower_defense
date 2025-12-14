@@ -22,10 +22,12 @@ public class Bullet : MonoBehaviour
             Destroy(gameObject);
             return; 
         }
-        
+        float currentSpeed = speed * WeatherManager.GlobalBulletSpeedMultiper;
+
+
         //Calculate direction and distance for this frame
         Vector3 direction = target.position - transform.position;
-        float distanceToMoveThisFrame = speed * Time.deltaTime; //To move at the same speed every computer
+        float distanceToMoveThisFrame = currentSpeed * Time.deltaTime; //To move at the same speed every computer
 
         // If the distance to target is less than the distance we move this frame, we hit
         if (direction.magnitude <= distanceToMoveThisFrame)

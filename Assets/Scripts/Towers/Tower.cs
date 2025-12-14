@@ -1,5 +1,7 @@
 using UnityEngine;
 using UnityEngine.EventSystems;
+
+public enum Type {Physical,Energy}
 public class Tower : MonoBehaviour
 {
 	//Features that most of the towers have, to improve 
@@ -9,6 +11,7 @@ public class Tower : MonoBehaviour
     public int sellValue = 50;
 
     [Header("Basic Tower Stats")] 
+    public Type type = Type.Physical; //select in Inspector
     public int cost = 15; //cost of the tower, can be updated individually later.
     public float range = 15f; //range of the tower, can be updated individually later.
     public LayerMask enemyLayer; //to know what an "Enemy" is for all towers
@@ -20,11 +23,33 @@ public class Tower : MonoBehaviour
     [HideInInspector]
     public Node currentNode; //To remember which node the tower is standing on
 
+    public virtual void Start()
+    {
+        if (WeatherManager.weatherManager != null)
+        {
+            WeatherManager.weatherManager.activeTowers.Add(this);
+        } 
+        InvokeRepeating("FindTarget", 0f, 0.4f);
+        UpdateRangeSphere();
+    }
+
+    public virtual void OnDestroy()
+    {
+        if (WeatherManager.weatherManager != null)
+        {
+            WeatherManager.weatherManager.activeTowers.Remove(this);
+        }
+    }
     protected void FindTarget()
     {
+        float currentRange = range; //start with base range
+        if( type == Type.Physical) //only physical tower will be affected by weather range multipliers
+        {
+            currentRange *= WeatherManager.GlobalRangeMultiplier;
+        }
         //Invisible sphere at our position with our range
         //Get an array of all colliders on the enemyLayer inside it.
-        Collider[] enemies = Physics.OverlapSphere(transform.position, range, enemyLayer);
+        Collider[] enemies = Physics.OverlapSphere(transform.position, currentRange, enemyLayer);
         
         float shortestDistance = Mathf.Infinity;
         Transform nearestEnemy = null;
@@ -60,7 +85,13 @@ public class Tower : MonoBehaviour
 		//if there is any sphere connected adjust it to look like the range of the tower, can 
         if (rangeSphere != null)
         {
-            float diameter = range * 2f / 3f;
+            float currentRange = range;
+            if (Application.isPlaying && type == Type.Physical)
+            {
+                currentRange *= WeatherManager.GlobalRangeMultiplier;
+            }
+
+            float diameter = currentRange * 2f / 3f;
             rangeSphere.localScale = new Vector3(diameter, diameter, diameter);
         }
     }

@@ -10,6 +10,7 @@ public class Enemy : MonoBehaviour
     [Header("Effects")]
     public GameObject deathEffect; //reference to particle system prefab
     public GameObject deathText; //reference to EnemyDeathText prefab /TextMeshPro
+    private float healthMultiplier; // the value we calculate in ChangeDifficulty
     private float startHealth;
     private Transform targetWaypoint;
     private int currentWaypointIndex = 0;
@@ -40,8 +41,10 @@ public class Enemy : MonoBehaviour
     void Update()
     {
         if (targetWaypoint == null) return;
+
+        float currentSpeed = moveSpeed * WeatherManager.GlobalEnemySpeedMultiplier;
         
-        transform.position = Vector3.MoveTowards(transform.position, targetWaypoint.position, moveSpeed * Time.deltaTime);
+        transform.position = Vector3.MoveTowards(transform.position, targetWaypoint.position, currentSpeed * Time.deltaTime);
         transform.LookAt(targetWaypoint); 
         if (Vector3.Distance(transform.position, targetWaypoint.position) < 0.1f)
         {
@@ -57,7 +60,7 @@ public class Enemy : MonoBehaviour
         // Update UI
         if (GetComponent<EnemyHealthBar>() != null)
         {
-            GetComponent<EnemyHealthBar>().UpdateHealth(health, startHealth);
+            GetComponent<EnemyHealthBar>().UpdateHealth(health, startHealth * healthMultiplier);
         }
         
         // If health drops to 0 or less, the enemy dies
@@ -116,7 +119,7 @@ public class Enemy : MonoBehaviour
     public void ChangeDifficulty(int waveNumber)
     {
         // Calculate the multiplier 
-        float multiplier = Mathf.Pow(1.1f, waveNumber);
-        health = startHealth * multiplier; //set the values;
+        healthMultiplier = Mathf.Pow(1.1f, waveNumber);
+        health = startHealth * healthMultiplier; //set the values;
     }
 }

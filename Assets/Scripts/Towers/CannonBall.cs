@@ -20,9 +20,9 @@ public class CannonBall : MonoBehaviour
     {
         startPoint = transform.position;
         targetPoint = _targetPoint;
-
+        float currentSpeed = speed * WeatherManager.GlobalBulletSpeedMultiper;
         float distance = Vector3.Distance(startPoint, targetPoint);
-        duration = distance / speed;
+        duration = distance / currentSpeed;
         startTime = Time.time;
         isLaunched = true;
     }

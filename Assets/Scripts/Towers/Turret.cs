@@ -12,13 +12,7 @@ public class Turret : Tower
     public Transform turretMiddlePart;
     
     private float fireCountdown = 0f; 
-
-    
-    void Start()
-    {
-        InvokeRepeating("FindTarget", 0f, 0.4f);
-        UpdateRangeSphere(); 
-    }   
+ 
     
     void Update()
     {
