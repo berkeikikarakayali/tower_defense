@@ -19,6 +19,7 @@ public class Enemy : MonoBehaviour
     {
         // Capture max health at start
         startHealth = health;
+    
         // Initialize the bar
         if ( GetComponent<EnemyHealthBar>() != null)
         {
@@ -60,7 +61,12 @@ public class Enemy : MonoBehaviour
         // Update UI
         if (GetComponent<EnemyHealthBar>() != null)
         {
-            GetComponent<EnemyHealthBar>().UpdateHealth(health, startHealth * healthMultiplier);
+            if (healthMultiplier == 0){ 
+                GetComponent<EnemyHealthBar>().UpdateHealth(health, startHealth);
+            } else
+            {
+                GetComponent<EnemyHealthBar>().UpdateHealth(health, startHealth * healthMultiplier);
+            }
         }
         
         // If health drops to 0 or less, the enemy dies

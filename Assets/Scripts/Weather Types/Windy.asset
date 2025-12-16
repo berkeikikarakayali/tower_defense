@@ -15,5 +15,5 @@ MonoBehaviour:
   weatherName: Windy
   rangeMultiplier: 0.7
   enemySpeedMultiplier: 1.2
-  bulletSpeedMultiplier: 1
+  bulletSpeedMultiplier: 1.2
   particleEffect: {fileID: 0}

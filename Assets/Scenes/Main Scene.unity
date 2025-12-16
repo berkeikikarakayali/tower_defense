@@ -1048,10 +1048,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c65ae80d018deee438e6d6f5b5007a34, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  activeTowers: []
   startWeather: {fileID: 11400000, guid: 41d36bf80bb6ea64e9e49395d1c349a6, type: 2}
   effects: {fileID: 0}
   clearWeather: {fileID: 11400000, guid: 8c179c456c3aa114682092db12fb0a08, type: 2}
   windyWeather: {fileID: 11400000, guid: 41d36bf80bb6ea64e9e49395d1c349a6, type: 2}
+  rainyWeather: {fileID: 11400000, guid: ee681107450ed6a4182c3ce3e6a0d1d5, type: 2}
 --- !u!4 &113225017
 Transform:
   m_ObjectHideFlags: 0
@@ -7808,8 +7810,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 77.2, y: -72.7}
-  m_SizeDelta: {x: 42.039917, y: 22.570374}
+  m_AnchoredPosition: {x: 96.7, y: -72.7}
+  m_SizeDelta: {x: 81.0399, y: 22.5704}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &728507494
 MonoBehaviour:

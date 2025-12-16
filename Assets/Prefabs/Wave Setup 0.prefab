@@ -76,16 +76,16 @@ MonoBehaviour:
       spawnRate: 2
     - enemyPrefab: {fileID: 6047493727995533255, guid: 5971daa8faa59934f83ef7883db8c345, type: 3}
       count: 3
-      spawnRate: 2
+      spawnRate: 3
   - name: WAVE 5
     groups:
     - enemyPrefab: {fileID: 725803256125395092, guid: 1f3cbe03064f0484691abcbd5be9a9dd, type: 3}
       count: 5
       spawnRate: 2
-    - enemyPrefab: {fileID: 1287359168785105097, guid: 06e7f3c2fff48eb4584595afc74cfe8d, type: 3}
+    - enemyPrefab: {fileID: 6047493727995533255, guid: 5971daa8faa59934f83ef7883db8c345, type: 3}
       count: 3
       spawnRate: 2
-    - enemyPrefab: {fileID: 6047493727995533255, guid: 5971daa8faa59934f83ef7883db8c345, type: 3}
+    - enemyPrefab: {fileID: 1287359168785105097, guid: 06e7f3c2fff48eb4584595afc74cfe8d, type: 3}
       count: 3
       spawnRate: 2
   - name: WAVE 6
@@ -136,9 +136,9 @@ MonoBehaviour:
     - enemyPrefab: {fileID: 1287359168785105097, guid: 06e7f3c2fff48eb4584595afc74cfe8d, type: 3}
       count: 3
       spawnRate: 2
-    - enemyPrefab: {fileID: 725803256125395092, guid: 1f3cbe03064f0484691abcbd5be9a9dd, type: 3}
-      count: 5
-      spawnRate: 2
+    - enemyPrefab: {fileID: 6283559766516875985, guid: f0c95757b45bfc4409d69e220dd29a6a, type: 3}
+      count: 2
+      spawnRate: 3
     - enemyPrefab: {fileID: 1287359168785105097, guid: 06e7f3c2fff48eb4584595afc74cfe8d, type: 3}
       count: 2
       spawnRate: 1
@@ -159,6 +159,9 @@ MonoBehaviour:
     - enemyPrefab: {fileID: 725803256125395092, guid: 1f3cbe03064f0484691abcbd5be9a9dd, type: 3}
       count: 5
       spawnRate: 1
+    - enemyPrefab: {fileID: 4309570488090703149, guid: caa038ba52ed0264ebbb24e6dfe4b982, type: 3}
+      count: 2
+      spawnRate: 3
     - enemyPrefab: {fileID: 1287359168785105097, guid: 06e7f3c2fff48eb4584595afc74cfe8d, type: 3}
       count: 3
       spawnRate: 1
@@ -176,9 +179,9 @@ MonoBehaviour:
     - enemyPrefab: {fileID: 1287359168785105097, guid: 06e7f3c2fff48eb4584595afc74cfe8d, type: 3}
       count: 10
       spawnRate: 1
-    - enemyPrefab: {fileID: 725803256125395092, guid: 1f3cbe03064f0484691abcbd5be9a9dd, type: 3}
-      count: 5
+    - enemyPrefab: {fileID: 6283559766516875985, guid: f0c95757b45bfc4409d69e220dd29a6a, type: 3}
+      count: 3
       spawnRate: 1
     - enemyPrefab: {fileID: 1287359168785105097, guid: 06e7f3c2fff48eb4584595afc74cfe8d, type: 3}
-      count: 3
+      count: 5
       spawnRate: 1

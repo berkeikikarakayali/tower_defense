@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Foggy
   m_EditorClassIdentifier: 
   weatherName: 
-  rangeMultiplier: 1
+  rangeMultiplier: 0.5
   enemySpeedMultiplier: 1
-  bulletSpeedMultiplier: 1
+  bulletSpeedMultiplier: 0.8
   particleEffect: {fileID: 0}

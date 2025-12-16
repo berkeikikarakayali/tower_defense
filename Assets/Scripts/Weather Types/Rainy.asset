@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46d05317e5ab7f54982103675b0af42b, type: 3}
   m_Name: Rainy
   m_EditorClassIdentifier: 
-  weatherName: 
-  rangeMultiplier: 1
-  enemySpeedMultiplier: 1
-  bulletSpeedMultiplier: 1
+  weatherName: Rainy
+  rangeMultiplier: 0.8
+  enemySpeedMultiplier: 0.7
+  bulletSpeedMultiplier: 0.9
   particleEffect: {fileID: 0}
