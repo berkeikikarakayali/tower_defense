@@ -1,23 +1,26 @@
 using UnityEngine;
+using System.Collections;
 using System.Collections.Generic;
 
 public class WeatherManager : MonoBehaviour
 {
     public static WeatherManager weatherManager; //singleton
-    public List<Tower> activeTowers = new List<Tower>();
+    public List<Tower> activeTowers = new List<Tower>(); // Keeps track of all active towers
 
+    // Global multipliers
     public static float GlobalRangeMultiplier = 1f;
     public static float GlobalEnemySpeedMultiplier = 1f;
     public static float GlobalBulletSpeedMultiper = 1f;
 
-    public WeatherType startWeather;
-    public Transform effects; // 0,0,0
-    
-    public WeatherType clearWeather;
-    public WeatherType windyWeather;
-    public WeatherType rainyWeather;
-    
+    public WeatherType startWeather; // Default weather
+    public Transform effects; //effect holder empty object at 0,0,0
     private GameObject currentEffect;
+
+    private Coroutine earthquakeCoroutine; // Reference to control the earthquake loop
+    
+    public WeatherType earthquakeWeather;
+    public WeatherType windyWeather;
+    
     void Awake()
     {
         if(weatherManager != null)
@@ -40,22 +43,23 @@ public class WeatherManager : MonoBehaviour
     {
         Debug.Log("Weather change; "+ weather.weatherName);
 
+        //Update Global Variables
         GlobalRangeMultiplier = weather.rangeMultiplier;
         GlobalEnemySpeedMultiplier = weather.enemySpeedMultiplier;
         GlobalBulletSpeedMultiper = weather.bulletSpeedMultiplier;
 
+        //Handle visual effects
         if (currentEffect != null)
         {
-            Debug.Log("asd1");
             Destroy(currentEffect);
         }
 
         if( weather.particleEffect != null && effects != null)
         {
-            Debug.Log("asd2");
             currentEffect = Instantiate(weather.particleEffect, effects);
         }
-        Debug.Log("asd3");
+
+        //Update Tower Ranges
         for (int i = 0; i < activeTowers.Count; i++)
         {
             if (activeTowers[i] != null)
@@ -63,21 +67,88 @@ public class WeatherManager : MonoBehaviour
                 activeTowers[i].UpdateRangeSphere(); //we update each tower that is active, 
             }
         }
+
+        //Earthquake section
+        //Stop if the previous earthquake routine is running
+        if(earthquakeCoroutine != null)
+        {
+            StopCoroutine(earthquakeCoroutine);
+            earthquakeCoroutine = null;
+        }
+
+        //Start new routine
+        if (weather.isEarthquake)
+        {
+            earthquakeCoroutine = StartCoroutine(EarthquakeRoutine(weather));
+        }
+    }
+
+    IEnumerator EarthquakeRoutine (WeatherType weatherData)
+    {
+        int destroyedCount = 0; //counter for destroyed towers
+
+        float waitTime = weatherData.shakeInterval;
+        if (waitTime <= 0.1f) waitTime = 1f;
+
+        while(true)
+        {
+            //shake 
+            if(CameraShake.cameraShake != null)
+            {
+                Debug.Log("salla");
+                StartCoroutine(CameraShake.cameraShake.Shake(weatherData.shakeDuration));
+            }
+            if(destroyedCount < weatherData.maxDestructionLimit && activeTowers.Count > 0)
+            {   
+                Debug.Log("salla2");
+            float currentChance = (destroyedCount == 0) ? weatherData.firstCrashChance : weatherData.nextCrashChance;
+                
+                // Random.value returns a float between 0 and 1
+                if (Random.value <= currentChance*3)
+                {
+                    Debug.Log(currentChance);
+                    DestroyRandomTower(weatherData.destructionFX);
+                    destroyedCount++; 
+                }
+            }
+            Debug.Log("salla3");
+            yield return new WaitForSeconds(waitTime);
+        }
+    }
+
+    //function to destroy a random tower
+    void DestroyRandomTower(GameObject fx)
+    {
+        int randomIndex = Random.Range(0, activeTowers.Count);
+        Tower victim = activeTowers[randomIndex]; // Selected victim
+
+        if (victim != null)
+        {
+            Debug.Log("Earthquake: " + victim.name + " destroyed!");
+            
+            // Spawn destruction fx if available
+            if (fx != null) 
+                Instantiate(fx, victim.transform.position, Quaternion.identity);
+            
+            // Destroy the object
+            Destroy(victim.gameObject);
+        }
     }
     void Update()
     {
         if (Input.GetKeyDown(KeyCode.E))
         {
-            SetWeather(clearWeather);
+            SetWeather(windyWeather);
         }
 
         if (Input.GetKeyDown(KeyCode.Q))
         {
-            SetWeather(windyWeather);
+            SetWeather(earthquakeWeather);
         }
-        if (Input.GetKeyDown(KeyCode.R))
+
+        if (Input.GetKeyDown(KeyCode.C))
         {
-            SetWeather(rainyWeather);
+            SetWeather(startWeather);
         }
     }
 }

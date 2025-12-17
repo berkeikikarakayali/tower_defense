@@ -16,4 +16,4 @@ MonoBehaviour:
   rangeMultiplier: 0.7
   enemySpeedMultiplier: 1.2
   bulletSpeedMultiplier: 1.2
-  particleEffect: {fileID: 0}
+  particleEffect: {fileID: 7204014512255760088, guid: f13558772b5e48f44be0845460c1b665, type: 3}

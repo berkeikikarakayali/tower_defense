@@ -14,6 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   weatherName: 
   rangeMultiplier: 1
-  enemySpeedMultiplier: 1
+  enemySpeedMultiplier: 0.9
   bulletSpeedMultiplier: 1
   particleEffect: {fileID: 0}
+  isEarthquake: 1
+  shakeInterval: 10
+  firstCrashChance: 0.1
+  nextCrashChance: 0.05
+  shakeDuration: 2
+  maxDestructionLimit: 2
+  destructionFX: {fileID: 7282314791824937927, guid: 637a1b5c8da35104ea26f924ff868c07, type: 3}
