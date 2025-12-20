@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using TMPro; // For the Text Mesh Pro UI element
+using UnityEngine.SceneManagement;
 
 public class Spawner : MonoBehaviour {
     
@@ -116,7 +117,7 @@ public class Spawner : MonoBehaviour {
             for (int i = 0; i < group.count; i++)
             {
                 SpawnEnemy(group.enemyPrefab); //To create an enemy
-                yield return new WaitForSeconds(1f / group.spawnRate);
+                yield return new WaitForSeconds(group.spawnRate);
             }
         }
         state = SpawnState.WAITING; // spawning process is finished, wait for player to kill the enemies
@@ -138,5 +139,13 @@ public class Spawner : MonoBehaviour {
         Debug.Log("All waves are finished! Good job!");
         state = SpawnState.COMPLETE;
         statusText.text = "YOU WIN!";
+
+        int nextLevelIndex = SceneManager.GetActiveScene().buildIndex + 1;
+    
+        if (nextLevelIndex < SceneManager.sceneCountInBuildSettings)
+        {   
+            PlayerPrefs.SetInt("LevelSaved", nextLevelIndex);
+            PlayerPrefs.Save();
+        }
     }
 }

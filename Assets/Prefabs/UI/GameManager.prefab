@@ -1,0 +1,102 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &3413065088209221696
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 9151189655665709580}
+  - component: {fileID: 8652594214863071906}
+  - component: {fileID: 5803571969172945562}
+  - component: {fileID: 5422009234690768147}
+  - component: {fileID: 128173880862508223}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &9151189655665709580
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3413065088209221696}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8652594214863071906
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3413065088209221696}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: feb2ea7bbd4fd8b40ba6b5f9d8e32ce0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  waveSetup: {fileID: 3836199554800530557, guid: 6a4197cfb34ada74bb0f25b6c91b09b1, type: 3}
+  waveWaitTime: 5
+  spawnPoint: {fileID: 0}
+  statusText: {fileID: 0}
+  isWaveActive: 0
+--- !u!114 &5803571969172945562
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3413065088209221696}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8bfa947f7ef8be34a92a8f789d7ed8da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  IsGameOver: 0
+--- !u!114 &5422009234690768147
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3413065088209221696}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db39a550d0f2649418a5d4256eabaa87, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  offset: {x: -3, y: 0.876517, z: -3}
+  towerPrefabs:
+  - {fileID: 5671669053756986575, guid: 37a83d561cdc2554f8122f5a86d8bcfe, type: 3}
+  - {fileID: 3811478315461122436, guid: 6c494669c6973614d8c97dac3e152860, type: 3}
+  - {fileID: 3605905032264009167, guid: b2b150166efb3034d939f265b91faee5, type: 3}
+  - {fileID: -2907619108903220138, guid: 3391e2b49dadccb429162650fad3c348, type: 3}
+  towerSelectUI: {fileID: 0}
+  towerModifyUI: {fileID: 0}
+  selectedNode: {fileID: 0}
+--- !u!114 &128173880862508223
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3413065088209221696}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec304c79b7ab4744eb6d7e5bad5bffa1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pauseMenuUI: {fileID: 0}
+  settingsMenuUI: {fileID: 0}

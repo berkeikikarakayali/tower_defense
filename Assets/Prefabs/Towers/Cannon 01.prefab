@@ -219,10 +219,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46e129f5011c0c94a84390abf7d8db36, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  nextUpgradePrefab: {fileID: 0}
-  upgradeCost: 30
+  nextUpgradePrefab: {fileID: 3605905032264009167, guid: 32247b6f881abcc45a32d810625b1352, type: 3}
+  upgradeCost: 60
   sellValue: 10
-  cost: 15
+  type: 0
+  cost: 35
   range: 15
   enemyLayer:
     serializedVersion: 2
@@ -319,7 +320,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: eb4a33a68adb1744c88097125d3b9fc4, type: 2}
+  - {fileID: 2100000, guid: 0de2640cbf408bc4d8c8c41060883e78, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
