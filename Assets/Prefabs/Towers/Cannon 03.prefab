@@ -230,7 +230,7 @@ MonoBehaviour:
     m_Bits: 64
   rangeSphere: {fileID: 371102142096031543}
   currentNode: {fileID: 0}
-  cannonBallPrefab: {fileID: 6591406855218892750, guid: d68f5e214171bf24c963c91ffe3ce05c, type: 3}
+  cannonBallPrefab: {fileID: 6591406855218892750, guid: aeb6098bc6904c248aeaa6d953fd1aec, type: 3}
   middlePart: {fileID: 4466848582774382715}
   firePoint: {fileID: 2624656875021490564}
   turnSpeed: 5

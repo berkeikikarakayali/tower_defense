@@ -13,7 +13,7 @@ public class Spawner : MonoBehaviour {
 
     [Header("References")]
     public Transform spawnPoint; // Where the enemy should spawn
-    public TextMeshProUGUI  statusText; // The text on the screen for the countdown and messages
+    public TextMeshProUGUI statusText; // The text on the screen for the countdown and messages
     public bool isWaveActive = false; //to check for the wave is active
 
     private int nextWaveIndex = 0;
@@ -140,12 +140,10 @@ public class Spawner : MonoBehaviour {
         state = SpawnState.COMPLETE;
         statusText.text = "YOU WIN!";
 
-        int nextLevelIndex = SceneManager.GetActiveScene().buildIndex + 1;
-    
-        if (nextLevelIndex < SceneManager.sceneCountInBuildSettings)
-        {   
-            PlayerPrefs.SetInt("LevelSaved", nextLevelIndex);
-            PlayerPrefs.Save();
+        GameManager gm = FindFirstObjectByType<GameManager>();
+        if(gm != null)
+        {
+            gm.WinLevel();
         }
     }
 }

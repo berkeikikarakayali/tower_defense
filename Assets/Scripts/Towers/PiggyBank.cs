@@ -36,6 +36,7 @@ public class PiggyBank : Tower
                 text_script.SetText("+$"+ incomeValue);
             }
         }
+        AudioManager.audioManager.PlaySound("CoinPickup");
         BaseStats.addMoney(incomeValue);
     }
 }

@@ -73,7 +73,6 @@ public class InfernoTower : Tower
             {
                 currentRate *= dmgIncRate; 
             }
-
         if (currentRate > maxRate) currentRate = maxRate;
         float damagePerSecond = damage * currentRate;
         float tickDamage = damagePerSecond * tickRate;

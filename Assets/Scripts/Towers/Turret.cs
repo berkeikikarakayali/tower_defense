@@ -44,6 +44,7 @@ public class Turret : Tower
         if (bullet != null) //If exists, tell it who the target is
         {
             bullet.Follow(target);
+            AudioManager.audioManager.PlaySound("TurretShoot");
         }
     }
     

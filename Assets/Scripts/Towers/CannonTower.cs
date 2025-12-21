@@ -34,6 +34,7 @@ public class CannonTower : Tower
         {
             // We pass the position, for Arc
             ball.Launch(target.position);
+            AudioManager.audioManager.PlaySound("CannonShoot");
         }
     }
 
