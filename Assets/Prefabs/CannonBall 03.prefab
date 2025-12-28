@@ -125,6 +125,7 @@ MonoBehaviour:
   damage: 150
   explosionRadius: 8
   height: 5
+  explosionFX: {fileID: 7069690873396791284, guid: f00a7a14670ccaa40b58f8725111af7b, type: 3}
   enemyLayer:
     serializedVersion: 2
     m_Bits: 64

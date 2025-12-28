@@ -4,6 +4,9 @@ using UnityEngine;
 public class WeatherType : ScriptableObject
 {
     public string weatherName;
+    
+    [TextArea]
+    public string description;
 
     [Header("Multipliers")]
     public float rangeMultiplier = 1f;

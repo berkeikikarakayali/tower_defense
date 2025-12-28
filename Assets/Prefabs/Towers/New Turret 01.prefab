@@ -79,7 +79,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nextUpgradePrefab: {fileID: 1534232295267376101, guid: 4d98da64a0e25de4a82f3ccef12c56f8, type: 3}
-  upgradeCost: 40
+  upgradeCost: 50
   sellValue: 10
   type: 0
   cost: 20

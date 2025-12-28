@@ -12,8 +12,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46d05317e5ab7f54982103675b0af42b, type: 3}
   m_Name: Rainy
   m_EditorClassIdentifier: 
-  weatherName: Rainy
+  weatherName: Rain is coming!
+  description: "Mud slows enemies <color=green>(-30%)</color> Bullet Speeds reduces
+    <color=red>(-10%)</color> \nand Tower Range drops <color=red>(-20%)</color>."
   rangeMultiplier: 0.8
   enemySpeedMultiplier: 0.7
   bulletSpeedMultiplier: 0.9
   particleEffect: {fileID: 3392192199069345227, guid: 6c09c45a98636e84bb162cd9a79b3f01, type: 3}
+  isEarthquake: 0
+  shakeInterval: 10
+  firstCrashChance: 0.1
+  nextCrashChance: 0.05
+  shakeDuration: 2
+  maxDestructionLimit: 2
+  destructionFX: {fileID: 0}

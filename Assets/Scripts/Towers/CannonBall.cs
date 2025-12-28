@@ -8,6 +8,9 @@ public class CannonBall : MonoBehaviour
     public float explosionRadius = 2f; //Explosion area
     public float height = 5f; //maximum height
 
+    [Header("VEffects")]
+    public GameObject explosionFX;
+
     public LayerMask enemyLayer;
 
     private Vector3 startPoint;
@@ -53,6 +56,13 @@ public class CannonBall : MonoBehaviour
                 e.TakeDamage(damage);
             }
         }
+
+        if (explosionFX != null)
+        {
+            GameObject effectIns = Instantiate(explosionFX, transform.position, transform.rotation);
+            Destroy(effectIns, 2f);
+        }
+
         Destroy(gameObject);
     }
 }

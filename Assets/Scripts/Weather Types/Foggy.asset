@@ -12,8 +12,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46d05317e5ab7f54982103675b0af42b, type: 3}
   m_Name: Foggy
   m_EditorClassIdentifier: 
-  weatherName: 
+  weatherName: Fog is coming!
+  description: "Dense Fog! Range <color=red>(-50%)</color> decreased, \nBullet Speed
+    <color=red>(-20%)</color> reduced."
   rangeMultiplier: 0.5
   enemySpeedMultiplier: 1
   bulletSpeedMultiplier: 0.8
-  particleEffect: {fileID: 0}
+  particleEffect: {fileID: 8866281704777952699, guid: fa9d8b5a9b7845444bf60813b25415ce, type: 3}
+  isEarthquake: 0
+  shakeInterval: 10
+  firstCrashChance: 0.1
+  nextCrashChance: 0.05
+  shakeDuration: 2
+  maxDestructionLimit: 2
+  destructionFX: {fileID: 0}

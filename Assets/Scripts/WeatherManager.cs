@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 
 public class WeatherManager : MonoBehaviour
 {
@@ -11,6 +12,9 @@ public class WeatherManager : MonoBehaviour
     public static float GlobalRangeMultiplier = 1f;
     public static float GlobalEnemySpeedMultiplier = 1f;
     public static float GlobalBulletSpeedMultiper = 1f;
+
+    [Header("UI References")]
+    public TextMeshProUGUI infoText;
 
     public WeatherType startWeather; // Default weather
     public Transform effects; //effect holder empty object at 0,0,0
@@ -51,7 +55,7 @@ public class WeatherManager : MonoBehaviour
         //Handle visual effects
         if (currentEffect != null)
         {
-            Destroy(currentEffect);
+            Destroy(currentEffect, 0.1f);
         }
 
         if( weather.particleEffect != null && effects != null)
@@ -81,6 +85,15 @@ public class WeatherManager : MonoBehaviour
         {
             earthquakeCoroutine = StartCoroutine(EarthquakeRoutine(weather));
         }
+
+        if (infoText != null)
+        {
+            infoText.text = $"{weather.weatherName}\n<size=80%>{weather.description}</size>";
+            infoText.color = weather.isEarthquake ? Color.red : Color.white;
+        }
+
+        StopCoroutine("HideWeatherInfo");
+        StartCoroutine("HideWeatherInfo");
     }
 
     IEnumerator EarthquakeRoutine (WeatherType weatherData)
@@ -95,23 +108,19 @@ public class WeatherManager : MonoBehaviour
             //shake 
             if(CameraShake.cameraShake != null)
             {
-                Debug.Log("salla");
                 StartCoroutine(CameraShake.cameraShake.Shake(weatherData.shakeDuration));
             }
             if(destroyedCount < weatherData.maxDestructionLimit && activeTowers.Count > 0)
             {   
-                Debug.Log("salla2");
             float currentChance = (destroyedCount == 0) ? weatherData.firstCrashChance : weatherData.nextCrashChance;
                 
                 // Random.value returns a float between 0 and 1
                 if (Random.value <= currentChance*3)
                 {
-                    Debug.Log(currentChance);
                     DestroyRandomTower(weatherData.destructionFX);
                     destroyedCount++; 
                 }
             }
-            Debug.Log("salla3");
             yield return new WaitForSeconds(waitTime);
         }
     }
@@ -150,5 +159,11 @@ public class WeatherManager : MonoBehaviour
         {
             SetWeather(startWeather);
         }
+    }
+
+    IEnumerator HideWeatherInfo()
+    {
+        yield return new WaitForSeconds(5f);
+        infoText.text = ""; 
     }
 }

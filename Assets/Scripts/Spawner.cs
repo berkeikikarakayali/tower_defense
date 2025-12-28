@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 using TMPro; // For the Text Mesh Pro UI element
 using UnityEngine.SceneManagement;
 
@@ -16,9 +17,16 @@ public class Spawner : MonoBehaviour {
     public TextMeshProUGUI statusText; // The text on the screen for the countdown and messages
     public bool isWaveActive = false; //to check for the wave is active
 
+
+    [Header("Dynamic Weather Settings")]
+    public WeatherType defaultWeather; //clear weather
+    public WeatherType earthquakeWeather; //only for the 10th wave earthquake
+    public List<WeatherType> otherWeathers; //fog,rain,wind random for 3 6 9 th waves
+
     private int nextWaveIndex = 0;
     private float searchCountDown = 1f; // How often to check for enemies, to optimize the game higher
     private SpawnState state = SpawnState.WAITING;
+
 
     void Start()
     {
@@ -102,6 +110,9 @@ public class Spawner : MonoBehaviour {
             yield return null; //wait for the next frame
         }
 
+        //dynamic weather implementation
+        ChooseWeather();
+
         StartCoroutine(SpawnWave(waveSetup.waves[nextWaveIndex]));
         nextWaveIndex++;
     }
@@ -122,7 +133,32 @@ public class Spawner : MonoBehaviour {
         }
         state = SpawnState.WAITING; // spawning process is finished, wait for player to kill the enemies
     }
-    
+    void ChooseWeather()
+    {
+        int currentWaveNumber = nextWaveIndex + 1; // to determine the which number of waves we are in currently
+        WeatherType selectedWt = defaultWeather; //default;
+        
+        if (currentWaveNumber == 10)
+        {
+            selectedWt = earthquakeWeather;
+        }
+
+        if(currentWaveNumber % 3 == 0)
+        {
+            if ( otherWeathers != null && otherWeathers.Count > 0)
+            {
+                int randomInd = Random.Range(0, otherWeathers.Count);
+                Debug.Log(randomInd);
+                selectedWt = otherWeathers[randomInd];
+            }
+        }
+
+        if (WeatherManager.weatherManager != null)
+        {
+            WeatherManager.weatherManager.SetWeather(selectedWt);
+        }
+
+    }
     void SpawnEnemy (GameObject _enemy) //Creates a copy of the prefab
     {
         GameObject newEnemy = Instantiate(_enemy, spawnPoint.position, spawnPoint.rotation);

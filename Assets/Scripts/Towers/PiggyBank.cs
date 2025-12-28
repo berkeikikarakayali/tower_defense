@@ -5,7 +5,7 @@ public class PiggyBank : Tower
     public int incomeValue = 2; //2$ per interval
     public float interval = 5; //time
     public GameObject moneyText; 
-    //reference to EnemyDeathText prefab /TextMeshPro 
+    //reference to FloatingText prefab /TextMeshPro 
     //we will show how much money it gives on top of the bank like enemy death text
 
 
@@ -30,7 +30,7 @@ public class PiggyBank : Tower
         if (moneyText != null)
         {
             GameObject text_ins = Instantiate(moneyText, transform.position, Quaternion.identity);
-            EnemyDeathText text_script = text_ins.GetComponent<EnemyDeathText>();
+            FloatingText text_script = text_ins.GetComponent<FloatingText>();
             if(text_script != null)
             {
                 text_script.SetText("+$"+ incomeValue);

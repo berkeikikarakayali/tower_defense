@@ -13,6 +13,9 @@ public class BuildManager : MonoBehaviour
     public TowerModifyUI towerModifyUI;
     public Node selectedNode;
 
+    [Header("Effects")]
+    public FloatingText floatingText; //to tell the player Sold! or Upgraded!
+
 	void Awake()
     {
         if (buildManager != null)
@@ -80,9 +83,9 @@ public class BuildManager : MonoBehaviour
         	Tower t = Instantiate(selectedTower, node.transform.position + offset, Quaternion.identity);
         	node.tower = t; //assign tower to node
             node.tower.currentNode = node; //assign node to tower
-            Debug.Log("Tower Built!");
+            SpawnFloatingText(node.transform.position, "TOWER BUILT!", Color.white);
 		} else {
-            Debug.Log("Not Enough money. You have " + BaseStats.Money);
+            SpawnFloatingText(node.transform.position, "No money! You need "+ selectedTower.cost + "$", Color.red);
         }
         DeselectNode();
     }
@@ -102,9 +105,9 @@ public class BuildManager : MonoBehaviour
 
             node.tower = newTower; //assign tower to node
             node.tower.currentNode = node; //assign node to tower
-            Debug.Log("Tower Upgraded!");
+            SpawnFloatingText(node.transform.position, "Upgraded!", Color.cyan);
         } else {
-            Debug.Log("Not Enough money to upgrade. You have " + BaseStats.Money);
+            SpawnFloatingText(node.transform.position, "No money! You need "+ currentTower.upgradeCost + "$", Color.red);
         }
         DeselectNode();
     }
@@ -115,8 +118,17 @@ public class BuildManager : MonoBehaviour
         BaseStats.addMoney(currentTower.sellValue);
         Destroy(currentTower.gameObject);
         node.tower = null;
-
-        Debug.Log("Tower Sold!");
+        SpawnFloatingText(node.transform.position, "Tower Sold! +$" + currentTower.sellValue , Color.yellow);
         DeselectNode();
+    }
+
+    public void SpawnFloatingText(Vector3 position, string text, Color color)
+    {
+        if(floatingText != null)
+        {
+            Vector3 spawnPosition = position + Vector3.up * 2f + (Vector3.left * 2f);
+            FloatingText ftext = Instantiate(floatingText, spawnPosition, Quaternion.identity);
+            ftext.SetText(text, color);
+        }
     }
 }

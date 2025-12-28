@@ -53,6 +53,12 @@ MonoBehaviour:
   spawnPoint: {fileID: 0}
   statusText: {fileID: 0}
   isWaveActive: 0
+  defaultWeather: {fileID: 11400000, guid: 8c179c456c3aa114682092db12fb0a08, type: 2}
+  earthquakeWeather: {fileID: 11400000, guid: 6a299dad50ed63248a0ba8b2c500fc68, type: 2}
+  otherWeathers:
+  - {fileID: 11400000, guid: bf4fabfd451e9b8498e109cfedbb78c6, type: 2}
+  - {fileID: 11400000, guid: ee681107450ed6a4182c3ce3e6a0d1d5, type: 2}
+  - {fileID: 11400000, guid: 41d36bf80bb6ea64e9e49395d1c349a6, type: 2}
 --- !u!114 &5803571969172945562
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -88,6 +94,7 @@ MonoBehaviour:
   towerSelectUI: {fileID: 0}
   towerModifyUI: {fileID: 0}
   selectedNode: {fileID: 0}
+  floatingText: {fileID: 1610846683659739278, guid: 7c50db4af5a917b41952f8889397337e, type: 3}
 --- !u!114 &128173880862508223
 MonoBehaviour:
   m_ObjectHideFlags: 0

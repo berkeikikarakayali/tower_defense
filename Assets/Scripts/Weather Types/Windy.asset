@@ -12,8 +12,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46d05317e5ab7f54982103675b0af42b, type: 3}
   m_Name: Windy
   m_EditorClassIdentifier: 
-  weatherName: Windy
+  weatherName: Wind is Coming!
+  description: "High Winds! Bullet speed boosted <color=green>(+20%)</color>, \nEnemy
+    Speed increased <color=red>(+20%)</color> \nand Range reduced <color=red>(-30%)</color>."
   rangeMultiplier: 0.7
   enemySpeedMultiplier: 1.2
   bulletSpeedMultiplier: 1.2
   particleEffect: {fileID: 7204014512255760088, guid: f13558772b5e48f44be0845460c1b665, type: 3}
+  isEarthquake: 0
+  shakeInterval: 10
+  firstCrashChance: 0.1
+  nextCrashChance: 0.05
+  shakeDuration: 2
+  maxDestructionLimit: 2
+  destructionFX: {fileID: 0}

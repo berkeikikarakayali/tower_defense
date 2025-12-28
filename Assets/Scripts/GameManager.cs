@@ -31,6 +31,7 @@ public class GameManager : MonoBehaviour
 
     public void EndGame()
     {
+        
         IsGameOver = true;
         Debug.Log("Game Over!");
 
@@ -48,7 +49,7 @@ public class GameManager : MonoBehaviour
         IsGameOver = true;
         Debug.Log("Level Won!");
         Debug.Log(SceneManager.GetActiveScene().buildIndex);
-        PlayerPrefs.SetInt("LevelSaved", SceneManager.GetActiveScene().buildIndex);
+        PlayerPrefs.SetInt("LevelSaved", SceneManager.GetActiveScene().buildIndex + 1);
         PlayerPrefs.Save();
 
         if (winPanel != null)

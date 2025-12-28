@@ -56,7 +56,7 @@ MonoBehaviour:
     m_Bits: 0
   rangeSphere: {fileID: 0}
   currentNode: {fileID: 0}
-  incomeValue: 2
+  incomeValue: 50
   interval: 5
   moneyText: {fileID: 825682705319743727, guid: 7c50db4af5a917b41952f8889397337e, type: 3}
 --- !u!1001 &6706969469720004163

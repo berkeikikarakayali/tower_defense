@@ -89,7 +89,7 @@ public class Enemy : MonoBehaviour
         if (deathText != null)
         {
             GameObject text_ins = Instantiate(deathText, transform.position, Quaternion.identity);
-            EnemyDeathText text_script = text_ins.GetComponent<EnemyDeathText>();
+            FloatingText text_script = text_ins.GetComponent<FloatingText>();
             if(text_script != null)
             {
                 text_script.SetText("+$"+ deathValue);

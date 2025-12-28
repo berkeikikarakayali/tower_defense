@@ -60,7 +60,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 13.333333, y: 13.333333, z: 13.333333}
+  m_LocalScale: {x: 26.666666, y: 26.666666, z: 26.666666}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 4952027290675277437}
@@ -285,10 +285,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nextUpgradePrefab: {fileID: 0}
   upgradeCost: 100
-  sellValue: 800
+  sellValue: 110
   type: 0
   cost: 50
-  range: 20
+  range: 40
   enemyLayer:
     serializedVersion: 2
     m_Bits: 64

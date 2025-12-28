@@ -1,6 +1,6 @@
 using UnityEngine;
 using TMPro;
-public class EnemyDeathText : MonoBehaviour
+public class FloatingText : MonoBehaviour
 {
     private TextMeshPro textMesh;
     public float duration = 1.5f; //how many second the text will stay
@@ -20,9 +20,14 @@ public class EnemyDeathText : MonoBehaviour
         }
     }
 
-    public void SetText(string text)
+    public void SetText(string text, Color? color = null)
     {
         textMesh = GetComponent<TextMeshPro>();
         textMesh.text = text;
+
+        if(color != null)
+        {
+            textMesh.color = (Color)color;
+        }
     }
 }
