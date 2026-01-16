@@ -36,8 +36,10 @@ public class AudioManager : MonoBehaviour
 
         SetMusicVol(musicVol);
         SetSFXVol(sfxVol);
-
-        PlayMusic("MenuTheme"); //menu theme music
+        if (AudioManager.audioManager != null)
+        {
+        AudioManager.audioManager.PlayMusic("MenuTheme"); 
+        }
     }
 
     public void PlaySound(string name)
@@ -99,6 +101,5 @@ public class AudioManager : MonoBehaviour
                 s.source.volume = vol;
             }
         }
-
     }
 }

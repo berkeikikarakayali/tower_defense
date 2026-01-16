@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro; // For the Text Mesh Pro UI element
 using UnityEngine.SceneManagement;
+using UnityEngine.UI; //wave start button
 
 public class Spawner : MonoBehaviour {
     
@@ -10,12 +11,18 @@ public class Spawner : MonoBehaviour {
 
     [Header("Wave Setup")]
     public WaveSetup waveSetup; //the wavesetup object reference that we created
-    public float waveWaitTime = 3f; // How long to wait between waves
+    //public float waveWaitTime = 3f; // How long to wait between waves
 
     [Header("References")]
     public Transform spawnPoint; // Where the enemy should spawn
     public TextMeshProUGUI statusText; // The text on the screen for the countdown and messages
+    public Button startButton; //wave start button;
     public bool isWaveActive = false; //to check for the wave is active
+
+    [Header("AutoStartWave Setup")]
+    public bool isAutoStartEnabled = false; //if active, automatically countdown starts
+    public float autoStartWaitTime = 3f;
+    private Coroutine autoStartCoroutine;
 
 
     [Header("Dynamic Weather Settings")]
@@ -49,6 +56,15 @@ public class Spawner : MonoBehaviour {
             enabled = false;
             return;
         }
+        if (startButton == null)
+        {
+            Debug.LogError("No start button referenced!");
+            enabled = false;
+            return;
+        }
+
+        startButton.onClick.AddListener(OnStartWaveButtonClicked); //we tell the game what to do
+        ShowStartButton(); //for the first wave
     }
     void Update ()
     {   
@@ -58,7 +74,7 @@ public class Spawner : MonoBehaviour {
             return;
         }
 
-        if (state == SpawnState.WAITING) //if we are waiting, check if the enemies are dead?
+        if (isWaveActive && state == SpawnState.WAITING) //if we are waiting, check if the enemies are dead?
         {
             if (EnemiesCleared())
             {
@@ -67,6 +83,51 @@ public class Spawner : MonoBehaviour {
             {
                 return; 
             }
+        }
+    }
+
+    public void SetAutoStart(bool isEnabled)
+    {
+        isAutoStartEnabled = isEnabled;
+
+        // if "Auto Start" enabled while we are waiting
+        if (isAutoStartEnabled && state == SpawnState.WAITING && !isWaveActive)
+        {
+            // if open, close and start countdown
+            if (startButton.gameObject.activeSelf)
+            {
+                startButton.gameObject.SetActive(false);
+                if (autoStartCoroutine != null) StopCoroutine(autoStartCoroutine);
+                autoStartCoroutine = StartCoroutine(AutoStartCountdown());
+            }
+        }
+        //if countdown was active, and player close it
+        else if (!isAutoStartEnabled && state == SpawnState.WAITING && !isWaveActive)
+        {
+            if (autoStartCoroutine != null) StopCoroutine(autoStartCoroutine);
+            ShowStartButton(); //default
+        }
+    }
+
+    void OnStartWaveButtonClicked()
+    {
+        startButton.gameObject.SetActive(false); //disable the button
+        StartCoroutine(StartNextWaveRoutine()); //start wave
+    }
+
+    void ShowStartButton()
+    {
+        state = SpawnState.WAITING;
+        isWaveActive = false; 
+
+        if (isAutoStartEnabled)
+        {
+            startButton.gameObject.SetActive(false);
+            if (autoStartCoroutine != null) StopCoroutine(autoStartCoroutine);
+            autoStartCoroutine = StartCoroutine(AutoStartCountdown());
+        } else {
+            startButton.gameObject.SetActive(true); // show button
+            statusText.text = "Wave " + (nextWaveIndex + 1) + " Ready";
         }
     }
     bool EnemiesCleared()
@@ -88,33 +149,35 @@ public class Spawner : MonoBehaviour {
         isWaveActive = false; //wave is over
         if (nextWaveIndex < waveSetup.waves.Length) //check if there are more wave left
         {
-            StartCoroutine(CountdownForNextWave()); // yes, start the countdown for the next wave
+            //StartCoroutine(CountdownForNextWave()); // yes, start the countdown for the next wave
+            ShowStartButton();
          } else
         {
             LevelCompleted(); // no, all waves are finished
         }
     }
 
-    IEnumerator CountdownForNextWave() // to handle countdown between waves
+    IEnumerator AutoStartCountdown() // to handle countdown between waves
     {
-        state = SpawnState.SPAWNING; // change the state to spawning, so update doesn't trigger this function again
-        isWaveActive = false; //not active countdown
-
-        float countdown = waveWaitTime;
+        float countdown = autoStartWaitTime;
         while (countdown > 0)
         {
             countdown -= Time.deltaTime;
             //clamp to not show negative number, F2 to show like 2.XX
             statusText.text = "Next Wave: " + Mathf.Clamp(countdown, 0f, Mathf.Infinity).ToString("F2");
-
             yield return null; //wait for the next frame
         }
+        OnStartWaveButtonClicked();
+    }
 
-        //dynamic weather implementation
-        ChooseWeather();
+    IEnumerator StartNextWaveRoutine() 
+    {
+        state = SpawnState.SPAWNING; 
+        isWaveActive = true; 
 
-        StartCoroutine(SpawnWave(waveSetup.waves[nextWaveIndex]));
-        nextWaveIndex++;
+        ChooseWeather(); //dynamic weather
+        yield return StartCoroutine(SpawnWave(waveSetup.waves[nextWaveIndex]));
+        nextWaveIndex++; 
     }
     IEnumerator SpawnWave (Wave currentWave)
     {
@@ -172,6 +235,8 @@ public class Spawner : MonoBehaviour {
     void LevelCompleted()
     {
         isWaveActive = false; //level completed
+        startButton.gameObject.SetActive(false); //close button
+        if (autoStartCoroutine != null) StopCoroutine(autoStartCoroutine); // Stop any timer
         Debug.Log("All waves are finished! Good job!");
         state = SpawnState.COMPLETE;
         statusText.text = "YOU WIN!";

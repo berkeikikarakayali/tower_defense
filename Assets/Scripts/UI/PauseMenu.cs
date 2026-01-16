@@ -80,6 +80,10 @@ public class PauseMenu : MonoBehaviour
         
         Time.timeScale = 1f;
         GameIsPaused = false;
+        if (AudioManager.audioManager != null)
+        {
+        AudioManager.audioManager.PlayMusic("MenuTheme"); 
+        }
         SceneManager.LoadScene("MainMenu");
     }
 }

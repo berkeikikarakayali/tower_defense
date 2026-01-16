@@ -23,6 +23,10 @@ public class GameOver : MonoBehaviour
         } else
         {
             Debug.Log("End of the game!");
+            if (AudioManager.audioManager != null)
+        {
+        AudioManager.audioManager.PlayMusic("CreditsTheme"); 
+        }
             SceneManager.LoadScene("CreditsScene");
         }
     }
